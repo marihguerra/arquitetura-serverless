@@ -12,7 +12,7 @@ provider "aws"{
 }
 
 resource "aws_s3_bucket" "my-bucket" {
-  bucket = "bucketpanqueca"
+  bucket = "bucketpanqueca3"
 
   tags = {
     Name        = "My bucket"
