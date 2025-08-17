@@ -1,13 +1,13 @@
 terraform {
   required_providers {
     aws = {
-      source = "hashicorp/aws"
+      source  = "hashicorp/aws"
       version = "6.9.0"
     }
   }
 }
 
-provider "aws"{
+provider "aws" {
   region = "us-east-2"
 }
 
@@ -17,7 +17,7 @@ resource "aws_s3_bucket" "my-bucket" {
   tags = {
     Name        = "My bucket"
     Environment = "Dev"
-    ManagedBy = "Terraform"
+    ManagedBy   = "Terraform"
   }
 }
 
