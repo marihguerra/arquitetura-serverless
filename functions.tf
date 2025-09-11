@@ -1,6 +1,6 @@
 resource "aws_lambda_function" "lambda1" {
   function_name = "submit_lambda"
-  handler       = "lambda1.handler"
+  handler       = "submit_lambda.lambda_handler"
   runtime       = "python3.9"
   role          = aws_iam_role.lambda_exec.arn
   filename      = "submit_lambda.zip"
@@ -14,7 +14,7 @@ resource "aws_lambda_function" "lambda1" {
 
 # resource "aws_lambda_function" "lambda2" {
 #   function_name = "process_lambda"
-#   handler       = "lambda2.handler"
+#   handler       = "process_lambda.handler"
 #   runtime       = "python3.9"
 #   role          = aws_iam_role.lambda_exec.arn
 #   filename      = "process_lambda.zip"
