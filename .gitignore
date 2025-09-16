@@ -34,3 +34,6 @@ node_modules/
 *.zip
 tfplan.out
 plan.tfout
+
+app-instructions.md
+curso/
