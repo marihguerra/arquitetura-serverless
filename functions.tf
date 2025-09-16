@@ -1,6 +1,3 @@
-# Lambda tests: {"id": "123", "data": "teste"} OR {"body": "{\"productName\":\"Test Product\",\"quantity\":3}"}
-# AND {"body": "{\"productName\":\"Test Product 2\",\"quantity\":2}"}
-
 resource "aws_lambda_function" "lambda1" {
   function_name = "submit_lambda"
   handler       = "submit_lambda.lambda_handler"

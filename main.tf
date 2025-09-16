@@ -34,19 +34,19 @@ resource "aws_lambda_event_source_mapping" "sqs_to_lambda2" {
   maximum_batching_window_in_seconds = 5
 }
 
-# resource "aws_cloudwatch_metric_alarm" "dynamodb_insert_alarm" {
-#   alarm_name          = "DynamoDBInsertAlarm"
-#   comparison_operator = "GreaterThanThreshold"
-#   evaluation_periods  = 1
-#   metric_name         = "SuccessfulRequestLatency"
-#   namespace           = "AWS/DynamoDB"
-#   period              = 60
-#   statistic           = "Sum"
-#   threshold           = 1
-#
-#   dimensions = {
-#     TableName = aws_dynamodb_table.orders_table.name
-#   }
-#
-#   alarm_description = "Alarme para novas inserções na tabela DynamoDB"
-# }
+resource "aws_cloudwatch_metric_alarm" "dynamodb_insert_alarm" {
+  alarm_name          = "DynamoDBInsertAlarm"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 1
+  metric_name         = "SuccessfulRequestLatency"
+  namespace           = "AWS/DynamoDB"
+  period              = 60
+  statistic           = "Sum"
+  threshold           = 1
+
+  dimensions = {
+    TableName = aws_dynamodb_table.orders_table.name
+  }
+
+  alarm_description = "Alarme para novas inserções na tabela DynamoDB"
+}
