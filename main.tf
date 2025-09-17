@@ -45,7 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_insert_alarm" {
   threshold           = 1
 
   dimensions = {
-    TableName = aws_dynamodb_table.orders_table.name
+    TableName = "orders_table"
   }
 
   alarm_description = "Alarme para novas inserções na tabela DynamoDB"
