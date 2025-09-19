@@ -12,13 +12,13 @@ provider "aws" {
 }
 
 resource "aws_sqs_queue" "my_queue" {
-  name = "orders_queue"
+  name = local.queue_name
 }
 
 resource "aws_dynamodb_table" "my_table" {
-  name           = "orders_table"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "orderId"
+  name         = local.table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "orderId"
 
   attribute {
     name = "orderId"
@@ -27,8 +27,8 @@ resource "aws_dynamodb_table" "my_table" {
 }
 
 resource "aws_lambda_event_source_mapping" "sqs_to_lambda2" {
-  event_source_arn                   = "arn:aws:sqs:us-east-2:444219106888:orders_queue"
-  function_name                      = "process_lambda"
+  event_source_arn                   = aws_sqs_queue.my_queue.arn
+  function_name                      = local.process_function_name
   batch_size                         = 10
   enabled                            = true
   maximum_batching_window_in_seconds = 5
@@ -45,7 +45,7 @@ resource "aws_cloudwatch_metric_alarm" "dynamodb_insert_alarm" {
   threshold           = 1
 
   dimensions = {
-    TableName = "orders_table"
+    TableName = local.table_name
   }
 
   alarm_description = "Alarme para novas inserções na tabela DynamoDB"

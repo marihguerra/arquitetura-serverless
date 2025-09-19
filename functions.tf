@@ -1,9 +1,9 @@
 resource "aws_lambda_function" "lambda1" {
-  function_name = "submit_lambda"
-  handler       = "submit_lambda.lambda_handler"
+  function_name = local.submit_function_name
+  handler       = "${local.submit_function_name}.lambda_handler"
   runtime       = "python3.9"
   role          = aws_iam_role.lambda_exec.arn
-  filename      = "submit_lambda.zip"
+  filename      = "${local.submit_function_name}.zip"
 
   environment {
     variables = {
@@ -13,11 +13,11 @@ resource "aws_lambda_function" "lambda1" {
 }
 
 resource "aws_lambda_function" "lambda2" {
-  function_name = "process_lambda"
-  handler       = "process_lambda.lambda_handler"
+  function_name = local.process_function_name
+  handler       = "${local.process_function_name}.lambda_handler"
   runtime       = "python3.9"
   role          = aws_iam_role.lambda_exec.arn
-  filename      = "process_lambda.zip"
+  filename      = "${local.process_function_name}.zip"
 }
 
 resource "aws_iam_role" "lambda_exec" {

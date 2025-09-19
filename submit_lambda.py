@@ -2,7 +2,7 @@ import boto3
 import json
 
 sqs = boto3.client('sqs')
-queue_url = 'https://sqs.us-east-2.amazonaws.com/444219106888/orders_queue'
+queue_url = 'INSERT QUEUE URL'
 
 def lambda_handler(event, context):
     try:
